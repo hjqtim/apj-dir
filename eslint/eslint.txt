@@ -1,0 +1,15 @@
+一、配置Eslint+prettier自动格式化代码
+安装eslint:npm i eslint；安装prettier: npm i prettier -D
+npx eslint --init；初始化时候有一个选项是生成eslint文件配置的格式，请选择json，方便直接使用原来配置。成功后在项目根目录中会有.eslintrc.json文件，生成后可以用附件：.eslintrc.json内容覆盖
+在vscode中安装eslint和prettier插件并启用
+在项目的跟目录中创建:.prettierrc.js文件，设置内容可以用附件.prettierrc.js配置
+vscode中setting中配置文件可以用下面代码
+ {
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "eslint.workingDirectories": [".eslintrc.json", { "mode": "auto" }],
+  "editor.formatOnSave": true
+}
+选择了很久，最全最有用的参考文章：https://juejin.cn/post/6990929456382607374
