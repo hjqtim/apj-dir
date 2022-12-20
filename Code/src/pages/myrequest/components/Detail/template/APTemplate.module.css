@@ -1,0 +1,151 @@
+.formStart input[disabled] {
+  background      : transparent;
+  color           : #000;
+  border          : none;
+  border-bottom   : 1px solid #000;
+  /* width        : 18cm; */
+}
+
+.A4 {
+  width      : 100%;
+  font-weight: 600;
+  font-size  : 12px;
+}
+
+.formStart {
+  padding: 10px 3%;
+}
+
+.formTitle {
+  font-size: 14px;
+}
+
+.forTitle01 {
+  display  : inline-block;
+  width    : 100%;
+  font-size: 13px;
+}
+
+.fontBar {
+  border-bottom   : 10px solid #000;
+  border-top      : none;
+  border-left     : none;
+  border-right    : none;
+  background      : #000;
+  width           : 100%;
+  /* height       : 15px; */
+  display         : block;
+  position        : relative;
+  margin-top      : 0px;
+}
+
+.forTitle01 span {
+  display: inline-block;
+  width  : 49%;
+}
+
+.forTitle01 p {
+  line-height: 7px;
+  font-weight: 500;
+}
+
+.form01 {
+  display    : inline-block;
+  width      : 100%;
+  line-height: 25px;
+  font-size  : 10px;
+  zoom       : 0.8;
+}
+
+.form01Left {
+  width       : 49%;
+  display     : inline-block;
+  margin-right: 1%;
+}
+
+.form01Right {
+  width  : 49%;
+  display: inline-block;
+}
+
+.form01Left01 {
+  width    : 3cm;
+  display  : inline-block;
+  font-size: 14px;
+}
+
+.form01Left02 {
+  width     : 70%;
+  text-align: right;
+  float     : right;
+}
+
+.form01Left02 input {
+  border       : none;
+  border-bottom: 1px solid #000;
+  width        : 95%;
+}
+
+.form02 {
+  width      : 18cm;
+  font-weight: 600;
+  font-size  : 10px;
+}
+
+/* table {
+    width : 120%;
+    border: 1px solid #000;
+  } */
+
+.formStart table td {
+  padding: 5px;
+}
+
+.formStart table td span {
+  line-height: 30px;
+}
+
+.formStart table td div input {
+  text-align: left;
+  float     : right;
+}
+
+.notice01 {
+  zoom: 0.9;
+}
+
+.notice01 p {
+  line-height: 8px;
+}
+
+.form03 input {
+  border       : none;
+  border-bottom: 1px solid #000;
+  line-height  : 20px;
+  font-size    : 14px;
+  width        : 68%;
+}
+
+.form04 input {
+  border       : none;
+  border-bottom: 1px solid #000;
+  line-height  : 20px;
+  font-size    : 14px;
+  width        : 63%;
+}
+
+@media all {
+  .pagebreak {
+    display: none;
+  }
+}
+
+@media print {
+  .page-break {
+    page-break-before: auto;
+  }
+
+  @page {
+    margin: 40px 5mm;
+  }
+}

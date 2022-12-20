@@ -1,0 +1,1 @@
+sonar-scanner -Dsonar.login=7dfdc3d33da267f74d5233cbf9fe6c128fd47e3f -Dsonar.host.url=https://sonarqube-h-qatool-sonarqube-dev.tstcld61.server.ha.org.hk

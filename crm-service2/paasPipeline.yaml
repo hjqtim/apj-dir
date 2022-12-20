@@ -1,0 +1,60 @@
+product: "IT_SUPPORT"            #For CICD Management Dashboard. Please find product from the Product Profile http://eao.home/pp/index.html?tab=detail&product=XXX&module=YYY
+module: "CRM"             #For CICD Management Dashboard. Please find module from the Product Profile http://eao.home/pp/index.html?tab=detail&product=XXX&module=YYY
+deployAsLib: false        #Checked would buy a library and deploy to central maven repository or npm  (default value = false)     
+checkErrDC: true          #Check deployment error and failed the pipeline when true.  When false, continue to proceed when encounter error.
+timeout: 30               #input timeout limit (timeout: 30 represent 30 days)
+#allWhenStart: true       #Obsoleted. When false, replace environment configuration value with Vault before environment deployment. When true, replace all configuration value with Vault when pipeline start. 
+devPipeline:
+  ENV:
+    - DEV:
+        openshiftURL:
+          - https://api.tstcld61.server.ha.org.hk:6443/   #Provide the URL of the cluster to be deployed to for each environment.  When an environment has more than 1 cluster, provide all the URL.
+        namespace:
+          - name: crm-corp-dev
+            nameForMapping: crm-corp-dev
+    # - SIT: 
+    #     openshiftURL:
+    #       - https://api.tstcld61.server.ha.org.hk:6443/
+    #     namespace:
+    #       - name: cicd-test-sit
+    #         nameForMapping: cicd-test-sit
+    # - UAT: 
+    #     openshiftURL:
+    #       - https://api.tstcld61.server.ha.org.hk:6443/
+    #     namespace:
+    #       - name: cicd-test-uat
+    #         nameForMapping: cicd-test-uat                       
+  fortifyScan: true      #require fortify scanning?
+  fortifyScanEnv: DEV    #Which environment for fortify scanning.  MANDATORY if fortifyScan = true AND deployAsLib = false
+  sonatypeScan: true     #Obsoleted. Must scan once. require sonatype scanning?
+  sonatypeScanEnv: DEV   #Obsoleted. Must scan once. Which environment for sonatype scanning. MANDATORY if sonatypeScan = true AND deployAsLib = false
+  notiEmail: wlw.wong@ha.org.hk           # Additional email to be notified.  Comma separated
+  kubeInject: false      #need istio sidecar injection?
+releasePipeline:
+  ENV:
+    # - PPS:
+    #     envAppDeployApprovers: HO IT&HI SC1 ODC Team        #CORP_ID or AD GROUP who have right to approve the app deployment
+    #     envAppDeployNotifyList: sc1odcteam@ho.ha.org.hk     #email to be notified for approving the app deployment
+    #     openshiftURL:
+    #       - https://cldpaast71-asm.server.ha.org.hk:8443/   #Provide the URL of the cluster to be deployed to for each environment.  When an environment has more than 1 cluster, provide all the URL.
+    #       - https://cldpaastst72-asm.server.ha.org.hk:8443/
+    #     namespace:
+    #       - name: cicd-test-pps
+    #         nameForMapping: cicd-test-pps
+    - PRD:
+        envAppDeployApprovers: HO IT&HI SC1 ODC Team  
+        envAppDeployNotifyList: sc1odcteam@ho.ha.org.hk    
+        prodDeploySlaveNamespace: eao-corp-cicd-prd-1  #Openshift namespace running the deployment slave in PRD environment (MANDATORY if PRD zone)
+        prodImageStreamNamespace: crm-corp-prd  #Openshift namespace storing imagestream in PRD environment (MANDATORY if PRD zone) 
+        openshiftURL:
+          - https://cldpaasp61-asm.server.ha.org.hk:8443/
+          - https://cldpaasp71-asm.server.ha.org.hk:8443/ 
+        namespace:
+          - name: crm-corp-prd
+            nameForMapping: crm-corp-prd                   
+  fortifyScan: true      #require fortify scanning?
+  fortifyScanEnv: PPS    #Which environment for fortify scanning.  MANDATORY if fortifyScan = true AND deployAsLib = false
+  sonatypeScan: true     #Obsoleted. Must scan once. require sonatype scanning?
+  sonatypeScanEnv: PPS   #Obsoleted. Must scan once. Which environment for sonatype scanning. MANDATORY if sonatypeScan = true AND deployAsLib = false
+  notiEmail: wlw.wong@ha.org.hk           # Additional email to be notified.  Comma separated
+  kubeInject: false      #need istio sidecar injection?

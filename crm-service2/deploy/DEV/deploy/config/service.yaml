@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: crm-core-svc
+  namespace: crm-corp-dev
+spec:
+  selector:
+    app: crm-core-svc
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080

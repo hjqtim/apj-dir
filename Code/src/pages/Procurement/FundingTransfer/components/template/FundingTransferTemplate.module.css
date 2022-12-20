@@ -1,0 +1,120 @@
+.page {
+  padding: 20px 3%;
+  background: #fff;
+  position: relative;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.pageHeader {
+  width: 190mm;
+  font-size: 14px;
+}
+.pageHeaderRow div:nth-child(2n) {
+  /* border-left: #000 1px solid; */
+  padding-left: 10px;
+}
+
+.pageHeaderRow {
+  width: 100%;
+  display: flex;
+  /* border: #ccc 1px solid; */
+  border-bottom: 0;
+  justify-content: space-between;
+  font-size: 13px;
+}
+
+.pageHeaderRow span:nth-child(2n + 1) {
+  width: 50px;
+  display: inline-block;
+}
+.pageHeaderRowRight {
+  width: 350px;
+  text-align: left;
+}
+
+.pageBody {
+  width: 190mm;
+  font-weight: 600;
+  font-size: 10px;
+}
+
+.pageBodyHeader {
+  margin-top: 10px;
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+}
+.pageBodyHeader div {
+  border-bottom: #000 1px solid;
+}
+
+.pageBodyHeader2 {
+  text-indent: 1em;
+}
+
+.pageBodyRow {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.pageBodyRow td {
+  border: #ccc 1px solid;
+  border-top: 0;
+  border-right: 0;
+  padding-left: 2px;
+}
+.pageBodyRow td:nth-child(6n) {
+  border-right: #ccc 1px solid;
+}
+
+.talbeFontSize {
+  font-size: 13px;
+}
+
+.tdTop {
+  border-top: #ccc 1px solid !important;
+  padding-left: 2px;
+}
+.tdRight {
+  border-right: #ccc 1px solid !important;
+}
+
+.pageBodyRowCenter {
+  width: 90%;
+  text-align: left;
+  border: #ccc 1px solid;
+  border-bottom: 0;
+
+  font-size: 13px;
+}
+
+.pageBodyRowFirst {
+  width: 130px;
+  display: inline-block;
+}
+.pageBodyRowLast {
+  padding-left: 5px;
+  border-left: #ccc 1px solid;
+  font-size: 13px;
+  word-wrap: break-word;
+  word-break: break-all;
+}
+
+.pageBodyFooter {
+  margin-top: 50px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.pageBodyFooter h2 {
+  margin: 2px;
+}
+
+@media print {
+  .page-break {
+    page-break-before: auto;
+  }
+  @page {
+    margin: 40px 10mm;
+  }
+}

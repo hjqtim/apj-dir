@@ -1,0 +1,36 @@
+import React, { useState } from 'react';
+import Grid from '@material-ui/core/Grid';
+import { makeStyles } from '@material-ui/core/styles';
+import AddCard from '../../../components/AddCard';
+import LocationHeader from '../../../components/LocationHeader';
+
+const useStyles = makeStyles(() => ({
+  root: {
+    flexGrow: 1
+  }
+}));
+
+export default function Site() {
+  const classes = useStyles();
+
+  const [query, setQuery] = useState('');
+
+  return (
+    <div className={classes.root}>
+      <Grid container spacing={3}>
+        <Grid item xs={12}>
+          {/* Location Header */}
+          <LocationHeader
+            breadcrumbs={[{ content: 'Location' }]}
+            onQueryChange={(event) => setQuery(event.target.value)}
+            query={query}
+          />
+        </Grid>
+        {query}
+        <Grid item lg={2} md={3} sm={6} xs={12}>
+          <AddCard />
+        </Grid>
+      </Grid>
+    </div>
+  );
+}

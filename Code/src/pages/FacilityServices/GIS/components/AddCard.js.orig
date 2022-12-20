@@ -1,0 +1,35 @@
+import React from 'react';
+import { makeStyles } from '@material-ui/core';
+import AddIcon from '@material-ui/icons/Add';
+
+const useStyles = makeStyles(() => ({
+  root: {
+    backgroundColor: 'rgb(250, 250, 250)',
+    border: '1px solid #dae0e9',
+    borderRadius: '12px',
+    cursor: 'pointer',
+    flexGrow: 1,
+    paddingTop: '75%',
+    position: 'relative'
+  },
+  content: {
+    color: '#dee0e4',
+    left: '50%',
+    position: 'absolute',
+    textAlign: 'center',
+    top: '50%',
+    transform: 'translate(-50%, -50%)'
+  }
+}));
+
+export default function AddCard(props) {
+  const classes = useStyles();
+
+  return (
+    <div className={classes.root} onClick={props.onClick}>
+      <div className={classes.content}>
+        <AddIcon fontSize="large" />
+      </div>
+    </div>
+  );
+}

@@ -1,0 +1,325 @@
+String  git_auth = 'ae220c94-2362-4253-94e7-9c22033a392b'
+
+String git_url = 'http://senvmc1a:8081/apj/sense-frontend.git'
+
+String tag = 'latest'
+
+String branch
+
+String oc_url
+
+String oc_url2
+
+String  oc_auth 
+
+String imageName
+
+String imageName2
+
+String docker_url
+
+String docker_url2
+
+
+pipeline {
+    agent {
+        node {
+            label "master"
+        }
+    }
+    environment {
+        scannerHome=tool 'SonarQubeScanner4.6.2' 
+    }
+    stages{
+        stage('Set environment variable') {
+            steps{
+                script{
+                    if(environment == 'DEV' || environment == 'DEV_IP'){
+                        branch = environment == "DEV" ? 'dev' : 'dev_ip'
+                        oc_auth  = '94097c04-1277-4d67-afdd-ac5efbea9603'
+                        oc_url =  'https://cldpaast71-asm.server.ha.org.hk:8443'
+                        docker_url = 'docker-registry-default.cldpaast71.server.ha.org.hk'
+                        imageName = "${docker_url}/sense-dev/${project_name}:${tag}"
+                    }else if(environment == 'ST'  || environment == 'ST_IP'){
+                        branch = environment =='ST' ? 'test' : 'st_ip'
+                        oc_auth  = '94097c04-1277-4d67-afdd-ac5efbea9603'
+                        oc_url =  'https://cldpaast71-asm.server.ha.org.hk:8443'
+                        docker_url = 'docker-registry-default.cldpaast71.server.ha.org.hk'
+                        imageName = "${docker_url}/sense-dev-2/${project_name}:${tag}"
+                    }else if(environment == 'SIT' || environment == 'SIT_IP'){
+                        branch = environment == "SIT" ? 'uat' : 'uat_ip'
+                        oc_auth  = '5b188653-e9fe-42b3-a122-2087401f0f9b'
+
+                        oc_url =  'https://cldpaasp61-asm.server.ha.org.hk:8443'
+                        oc_url2 =  'https://cldpaasp71-asm.server.ha.org.hk:8443'
+
+                        docker_url = 'docker-registry-default.cldpaasp61.server.ha.org.hk'
+                        docker_url2 = 'docker-registry-default.cldpaasp71.server.ha.org.hk'
+
+                        imageName = "${docker_url}/itsupport-sense-prd-2/${project_name}:${tag}"
+                        imageName2 = "${docker_url2}/itsupport-sense-prd-2/${project_name}:${tag}"
+                    }else if(environment == 'PROD'){
+                        def now = new Date()                        
+                        tag = now.format("yyMMdd", TimeZone.getTimeZone('UTC'))
+                        branch = 'master'
+                        oc_auth  = '5b188653-e9fe-42b3-a122-2087401f0f9b'
+
+                        oc_url =  'https://cldpaasp61-asm.server.ha.org.hk:8443'
+                        oc_url2 =  'https://cldpaasp71-asm.server.ha.org.hk:8443'
+
+                        docker_url = 'docker-registry-default.cldpaasp61.server.ha.org.hk'
+                        docker_url2 = 'docker-registry-default.cldpaasp71.server.ha.org.hk'
+
+                        imageName = "${docker_url}/itsupport-sense-prd/${project_name}:${tag}"
+                        imageName2 = "${docker_url2}/itsupport-sense-prd/${project_name}:${tag}"
+                    }
+               }
+           }
+        }
+        stage('Pull the code'){
+            steps{
+                echo "branch-----/${branch},environment-----${environment}"
+                checkout([
+                        $class: 'GitSCM',
+                        branches: [  [ name: "*/${branch}" ]],
+                        doGenerateSubmoduleConfigurations: false,
+                        extensions: [ ],
+                        submoduleCfg: [ ],
+                        userRemoteConfigs: [
+                            [
+                                credentialsId: "${git_auth}",
+                                url: "${git_url}"
+                            ]
+                        ]
+                    ])
+            }
+        }
+        //  stage('Check the source code') {
+        //     steps{
+        //          nodejs('NodeJS 14.18.1') {
+        //             withSonarQubeEnv('SonarQubeServer'){
+        //                 sh """
+        //                     cd Code
+        //                     ${scannerHome}/bin/sonar-scanner  
+        //                 """
+        //             }
+        //          }
+        //         echo 'Source code checked completed'
+        //     }
+        // }
+        // stage('Quality Gate') {
+        //     steps {
+        //       script {
+        //           Integer waitSeconds = 10
+        //           Integer timeOutMinutes = 10
+        //           Integer maxRetry = (timeOutMinutes * 60) / waitSeconds as Integer
+        //           for (Integer i = 0; i < maxRetry; i++) {
+        //             try {
+        //               timeout(time: waitSeconds, unit: 'SECONDS') {
+        //                 def qg = waitForQualityGate()
+        //                 if (qg.status != 'OK') {
+        //                   error "Sonar quality gate status: ${qg.status}"
+        //                 } else {
+        //                   i = maxRetry
+        //                 }
+        //               }
+        //             } catch (Throwable e) {
+        //               if (i == maxRetry - 1) {
+        //                 throw e
+        //               }
+        //             }
+        //         }
+        //       }
+        //        echo 'The scan result is obtained successfully'
+        //     }
+        // }
+        stage('Download dependencies'){
+            steps{
+                script{
+                    node('salve_1A'){
+                        catchError(buildResult: 'SUCCESS', message: 'Failed to download dependencies') {
+                            sh "cd  /appl/sense/data/jenkins/mount/workspace/SENSE-Frontend/Code && npm install"
+                        }
+                    }
+                }
+            }
+        }
+        stage('Build the project'){
+            steps{
+                script{
+                    node('salve_1A'){
+                        sh "cd  /appl/sense/data/jenkins/mount/workspace/SENSE-Frontend/Code &&  npm run build"
+                    }
+                }
+            }
+        }
+        stage('Remove the mirror') {
+            when{
+                expression{
+                    return  (environment == 'DEV' || environment == 'ST' || environment == 'DEV_IP' || environment == 'ST_IP')
+                }
+
+            }
+            steps{
+                script{
+                    node('salve_1A'){
+                        catchError(buildResult: 'SUCCESS', message: 'Failed to remove the mirror') {
+                            sh "docker rmi -f ${imageName}"
+                        }
+                    }
+                }
+            }
+        }
+        stage('Build the mirror'){
+            steps{
+                script{
+                    node('salve_1A'){
+                        sh "cd  /appl/sense/data/jenkins/mount/workspace/SENSE-Frontend/Code && docker build -t ${imageName} ."
+                    }
+                }
+            }
+        }
+        stage('Compression image') {
+            steps{
+                script{
+                    if(environment == 'SIT' || environment == 'PROD'  || environment == 'SIT_IP')
+                    node('salve_1A'){
+                        sh "cd  /appl/sense/docker/SENSEImages && docker save -o ${project_name}.tar  ${imageName}"
+                    }
+                }
+                    echo 'Build the image successful'
+            }
+        }
+        stage('Upload the image to Openshift') {
+            when{
+                expression{
+                    return  (environment == 'DEV' || environment == 'ST' || environment == 'DEV_IP' || environment == 'ST_IP')
+                }
+
+            }
+            steps{
+               script{
+                    node('salve_1A'){
+                        withCredentials([usernamePassword(
+                            credentialsId: "${oc_auth}",
+                            passwordVariable: 'password',  
+                            usernameVariable: 'username')])
+                        {
+                            sh 'cd /appl/sense/docker/upload_images && ./oc login  -u ${username} -p """${password}""" ${oc_url}'
+                            sh "cd /appl/sense/docker/upload_images && docker login -u `./oc whoami` -p `./oc whoami -t` ${docker_url}"
+                            sh "docker push ${imageName}"
+                        }
+                    }
+               }
+            }
+        }
+        stage('Copy zip to pro salve') {
+            when{
+                expression{
+                    return  (environment == 'SIT' || environment == 'PROD' || environment == 'SIT_IP')
+                }
+
+            }
+            steps{
+               script{
+                    node('slave_pro_window'){
+                        withCredentials([usernamePassword(
+                            credentialsId: "09fb338c-c702-4805-bac0-ace57078eed9",
+                            passwordVariable: 'password',  
+                            usernameVariable: 'username')])
+                        {
+                            bat "pscp  -l  ${username} -pw ${password} senadm@160.200.35.22:/appl/sense/docker/SENSEImages/${project_name}.tar C:/temp2/tarPackage"
+                        }
+                    }
+                    node('salve_1A'){
+                        catchError(buildResult: 'SUCCESS', message: 'Failed to remove the mirror') {
+                            sh "docker rmi -f ${imageName}"
+                            sh "docker rmi -f ${imageName2}"
+                        }
+                    }
+               }
+            }
+        }
+        stage('Remove the mirror and decompression package at pro salve') {
+            when{
+                expression{
+                    return  (environment == 'SIT' || environment == 'PROD' || environment == 'SIT_IP')
+                }
+
+            }
+            steps{
+               script{
+                    node('slave_pro_window'){
+                        catchError(buildResult: 'SUCCESS', message: 'Failed to remove the mirror') {
+                            bat "docker rmi -f ${imageName}"
+                            bat "docker rmi -f ${imageName2}"
+                        }
+                        bat "cd  C:/temp2/tarPackage && docker load -i ${project_name}.tar"                         
+                    }
+               }
+            }
+        }
+        stage('Upload the image to Openshift at pro salve') {
+            when{
+                expression{
+                    return  (environment == 'SIT' || environment == 'PROD' || environment == 'SIT_IP')
+                }
+
+            }
+            steps{
+               script{
+                    node('slave_pro_window'){
+                        withCredentials([usernamePassword(
+                            credentialsId: "${oc_auth}",
+                            passwordVariable: 'password',  
+                            usernameVariable: 'username')])
+                        {
+                            def stdout
+                            String token61
+                            bat "cd  C:/temp2 && oc login  -u ${username} -p ${password} ${oc_url}"
+                            stdout = bat returnStdout: true ,script: "cd  C:/temp2 && oc whoami -t"
+                            token61 = stdout.readLines()[2]
+                            bat "docker login -u chaukm  -p ${token61} ${docker_url}"
+                            bat "docker push ${imageName}"
+                            bat "cd  C:/temp2 && oc logout"
+                            bat "docker logout ${docker_url}"
+
+                            def stdout2
+                            String token71
+                            bat "cd  C:/temp2 && oc login  -u ${username} -p ${password} ${oc_url2}"
+                            stdout2 = bat returnStdout: true ,script: "cd  C:/temp2 && oc whoami -t"
+                            token71 = stdout2.readLines()[2]
+                            bat "docker login -u chaukm  -p ${token71} ${docker_url2}"
+                            bat "docker tag ${imageName} ${imageName2}"                          
+                            bat "docker push ${imageName2}"
+                        }
+                    }
+               }
+            }
+        }
+         stage('Fortify scan code') {
+            steps{
+                script{
+                    node('slave_window'){
+                        checkout([$class: 'GitSCM',
+                        branches: [[name: "*/${branch}"]],
+                        extensions: [],
+                        userRemoteConfigs: [[
+                                    credentialsId: "${git_auth}",
+                                    url: "${git_url}"
+                                ]]
+                            ])
+
+                        catchError(buildResult: 'SUCCESS', message: 'Failed to scan') {
+                            bat '''
+                                cd C:/ACT/SENSE/workspace/SENSE-Frontend/Code
+                                FortifyCode.bat
+                            '''
+                        }
+                        echo 'Fortify scan completed'
+                    }
+                }
+            }
+        }
+    }
+}

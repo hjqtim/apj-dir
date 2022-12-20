@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="b06db1fc-b007-40cc-99ef-7cd5cf235a7b" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/api/gis/cluster.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/gis/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/FacilityServices/GIS/components/IndexCard.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/FacilityServices/GIS/pages/elements/cluster.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/FacilityServices/GIS/pages/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/FacilityServices/GIS/public/assets/images/InstitutionLocation.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/FacilityServices/GIS/public/assets/images/NetworkLocation.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/FacilityServices/GIS/public/assets/images/location.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/rms/Preparation/components/PRpreparationEEB.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/resourceManage/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/resourceManage/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Webdp/CancelBtn/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Webdp/CancelBtn/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Webdp/PendingBtn/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Webdp/PendingBtn/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/AdministrationSystem/SystemMessages/components/List.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/AdministrationSystem/SystemMessages/components/List.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/FacilityServices/GIS/components/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/FacilityServices/GIS/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/FacilityServices/GIS/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/NetworkInformation/NetworkCloset/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/NetworkInformation/NetworkCloset/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Procurement/FundingTransfer/components/FundingTXSummary.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Procurement/FundingTransfer/components/FundingTXSummary.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/ResourceManage/RPApplication/components/HeadSearch.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/ResourceManage/RPApplication/components/HeadSearch.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/ResourceManage/RPApplication/components/ResourceForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/ResourceManage/RPApplication/components/ResourceForm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/ResourceManage/RPApplication/components/TopDrawerBox.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/ResourceManage/RPApplication/components/TopDrawerBox.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/ResourceManage/RPApplication/components/generalForm/ACLForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/ResourceManage/RPApplication/components/generalForm/ACLForm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/ResourceManage/RPApplication/components/generalForm/InstallationForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/ResourceManage/RPApplication/components/generalForm/InstallationForm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/ResourceManage/RPApplication/components/generalForm/JobTypea.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/ResourceManage/RPApplication/components/generalForm/JobTypea.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/ResourceManage/RPApplication/components/generalForm/JobTypeb.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/ResourceManage/RPApplication/components/generalForm/JobTypeb.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/ResourceManage/RPApplication/components/generalForm/useValidationForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/ResourceManage/RPApplication/components/generalForm/useValidationForm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/ResourceManage/RPApplication/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/ResourceManage/RPApplication/components/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/myaction/components/Detail/PendingConfirm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/myaction/components/Detail/PendingConfirm.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/myaction/components/Detail/TaskCompleted.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/myaction/components/Detail/TaskCompleted.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/rms/Preparation/components/PRpreparation.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/rms/Preparation/components/PRpreparation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/rms/Preparation/components/PRpreparationBTN.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/rms/Preparation/components/PRpreparationBTN.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/ResourceMX/resourceReduces.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/ResourceMX/resourceReduces.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/route-items/FacilityServices.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/route-items/FacilityServices.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/baseUrl.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/baseUrl.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/prefix.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/prefix.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/tools/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/tools/index.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="2ESy3W0flrEqlLnTYwsS3flOH70" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b06db1fc-b007-40cc-99ef-7cd5cf235a7b" name="Changes" comment="" />
+      <created>1662603081248</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1662603081248</updated>
+    </task>
+    <servers />
+  </component>
+</project>

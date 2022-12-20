@@ -1,0 +1,20 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+    name: crm-core-svc
+    namespace: crm-corp-dev
+    labels:
+      application: crm-core-svc
+      # alert.project-code: ${ALERT_PROJECT_CODE}       
+spec:
+  host: crm-service-crm-corp-dev.tstcld61.server.ha.org.hk
+  to:
+    kind: Service
+    name: crm-core-svc
+    weight: 100
+  port:
+    targetPort: 8080
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Allow
+  wildcardPolicy: None

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="theme-color" content="#000000" />
+
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+
+    <title>SENSE Platform</title>
+    <meta
+      name="description"
+      content="A professional package that comes with plenty of UI components, forms, tables, charts, dashboards, pages and svg icons. Each one is fully customizable, responsive and easy to use."
+    />
+    <meta
+      name="keywords"
+      content="material app,react,material,kit,dashboard,application,admin,template"
+    />
+    <meta name="author" content="Bootlab" />
+
+    <noscript id="jss-insertion-point"></noscript>
+    <script>
+      (function (window) {
+        var theUA = window.navigator.userAgent.toLowerCase();
+        if (
+          (theUA.match(/msie\s\d+/) && theUA.match(/msie\s\d+/)[0]) ||
+          (theUA.match(/trident\s?\d+/) && theUA.match(/trident\s?\d+/)[0]) ||
+          theUA.match(/rv:11.0/)
+        ) {
+          var title = "<h2>Your browser version isn't supported.  Here's what works:<br/></h2>";
+          var chrome =
+            '<div style="margin:20px;width:50px;height:50px;background: url(%PUBLIC_URL%/static/img/avatars/chrome.png) center center;-moz-background-size:100% 100%; background-size: cover"></div>';
+          var firefox =
+            '<div style="margin:20px;width:50px;height:50px;background: url(%PUBLIC_URL%/static/img/avatars/firefox.png) center center;-moz-background-size:100% 100%; background-size: cover"></div>';
+          if (!theUA.match(/rv:11.0/)) {
+            var ieVersion =
+              theUA.match(/msie\s\d+/)[0].match(/\d+/)[0] || theUA.match(/trident\s?\d+/)[0];
+            if (ieVersion <= 8) {
+              chrome = '';
+              firefox = '';
+            }
+          }
+          var content =
+            '<div style="display:flex;align-items: center;">' +
+            chrome +
+            '<h3>Google Chrome</h3></div>' +
+            '<div style="display:flex;align-items: center;">' +
+            firefox +
+            '<h3>Mozilla Firefox</h3></div>';
+          document.writeln(title);
+          document.writeln(content);
+          document.execCommand('Stop');
+        }
+      })(window);
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <noscript> You need to enable JavaScript to run this app. </noscript>
+  </body>
+</html>
+<style>
+  /* for material UI TimePicker */
+  .MuiPickersClockNumber-clockNumber {
+    justify-content: unset !important;
+  }
+</style>
